@@ -39,10 +39,10 @@ D11 11 0 XHP50
 D12 12 0 XHP50
 *----------------------------------------------
 
-.print dc v(Vs) i(Rw1) v(1) i(D1) v(6) i(D6) v(12) i(D12)
+.print dc v(Vs) @Rw1[i] v(1) @D1[id] v(6) @D6[id] v(12) @D12[id]
 
 *gnucap
-.dc 12 12 trace off
+.dc V1 12.15 12.15 1
 
 *ngspice
 *.dc 12
