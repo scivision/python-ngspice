@@ -102,7 +102,8 @@ def parse_ngspice_raw_binary(path: str) -> pandas.DataFrame:
                         raw = numpy.fromfile(fh, dtype=numpy.float64, count=no_points * no_vars * 2)
                         if raw.size != no_points * no_vars * 2:
                             raise ValueError("Unexpected EOF while reading complex ngspice raw data")
-                        arr = raw.reshape(no_points, no_vars, 2)[:, :, 0]
+                        pair = raw.reshape(no_points, no_vars, 2)
+                        arr = pair[:, :, 0] + 1j * pair[:, :, 1]
                     else:
                         raw = numpy.fromfile(fh, dtype=numpy.float64, count=no_points * no_vars)
                         if raw.size != no_points * no_vars:

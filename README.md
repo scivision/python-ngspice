@@ -35,11 +35,20 @@ Simulate multi-stage voltage multiplier plotting voltage, current, and impedance
 python voltageDoubler.py archive/vDubMult.net
 ```
 
+Simulatie impedance vs. frequency for multi-stage voltage multiplier.
+
+```sh
+python impedance.py archive/vDubTry.net
+```
+
 Simulate no-driver Cree XHP LED problems due to wire voltage drop, using `ledDrop.net` and io.StringIO with stdout.
 
 ```sh
 python ledDrop.py
 ```
 
-* `runDubTry.m` plot spectrum
-* `runMos.m` using MOS simulation
+Simulate MOSFET saturated output.
+
+```sh
+python mos.py archive/mos.net
+```
