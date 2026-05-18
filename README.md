@@ -1,21 +1,21 @@
-# Python - command line SPICE interface and plotting
+# Python - command line ngSPICE interface and plotting
 
-GNUcap or
 [NGspice](https://ngspice.sourceforge.io/)
-voltage multiplier sim.
+simluations using Python matplotlib for plotting.
 
 Used for my Ph.D. qualifying exam, and a follow-on to my
 [harmonic radar tag improvements](https://www.scivision.dev/harmonic-radar).
 
-NOTE: Consider using
-[PySpice](https://pyspice.fabrice-salvaire.fr)
-instead of this approach.
+This file-based approach is an alternative to CFFI
+[PySpice](https://github.com/PySpice-org/PySpice).
 
 Installation:
 
 * Linux: `apt install ngspice`
 * macOS: `brew install ngspice`
 * [Windows](https://ngspice.sourceforge.io/download.html)
+
+Setup this package:
 
 ```sh
 python -m pip install -e ./
