@@ -1,9 +1,9 @@
-* 
+*
 
 *------------- Models -------------------------
 *.include /usr/share/oregano/models/1N4148.model
 *----------------------------------------------
-.model M_D1N1418 d(IS=0.1PA, RS=16 CJO=2PF TT=12N BV=100 IBV=0.1PA) 
+.model M_D1N1418 d(IS=0.1PA, RS=16 CJO=2PF TT=12N BV=100 IBV=0.1PA)
 
 *******************************************************************
 * SMALL SIGNAL SCHOTTKY DIODE 10V....40V
@@ -45,7 +45,7 @@ d1 A K dx
 
 .model BAR42 D(
 + IS=1.13853e-08 ISR=3.26235e-08 RS=0.99517
-+ CJO=9.26191e-12 VJ=1.6 M=0.411631 BV=33 EG=0.7 ) 
++ CJO=9.26191e-12 VJ=1.6 M=0.411631 BV=33 EG=0.7 )
 
 
 *D1 1 0 M_D1N1418
@@ -53,25 +53,28 @@ d1 A K dx
 *D1 1 0 BAS69KFILM
 *D2 2 1 BAS69KFILM
 
-D1 1 0 BAR42
-D2 VdcOut 1 BAR42
+V_D1S 1 nD1 0
+D1 nD1 0 BAR42
+V_D2S VdcOut nD2 0
+D2 nD2 1 BAR42
 
-V_V1 Vs 0 sin(0.0 1 100MEG 0 0) 
+V_V1 Vs 0 sin(0.0 1 100MEG 0 0)
 Rs Vs Vin 10
 *V_V1 Vin 0 pulse(-0.5 0.5 0 0.1u 0.1u 4.8u 10u)
 
-C1 Vin 1 1n IC=0 
-C2 VdcOut   0 1n IC=0 
+V_C1S Vin nC1 0
+C1 nC1 1 1n IC=0
+V_C2S VdcOut nC2 0
+C2 nC2 0 1n IC=0
 
 *----------------------------------------------
 
-.print tran v(Vin) v(1) v(VdcOut) i(C1) i(C2) i(D1) i(D2)
-
 *gnucap
-.tran 0.1u 10u 0 trace all > vDub.out 
+.tran 0.1u 10u 0
 
 *ngspice
-*.tran 1u 100u 0 
+*.tran 1u 100u 0
+
 
 
 .op
