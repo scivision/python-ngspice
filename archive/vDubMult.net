@@ -1,9 +1,9 @@
-* 
+*
 
 *------------- Models -------------------------
 *.include /usr/share/oregano/models/1N4148.model
 *----------------------------------------------
-.model M_D1N1418 d(IS=0.1PA, RS=16 CJO=2PF TT=12N BV=100 IBV=0.1PA) 
+.model M_D1N1418 d(IS=0.1PA, RS=16 CJO=2PF TT=12N BV=100 IBV=0.1PA)
 
 *******************************************************************
 * SMALL SIGNAL SCHOTTKY DIODE 10V....40V
@@ -45,7 +45,7 @@ d1 A K dx
 
 .model BAR42 D(
 + IS=1.13853e-08 ISR=3.26235e-08 RS=0.99517
-+ CJO=9.26191e-12 VJ=1.6 M=0.411631 BV=33 EG=0.7 ) 
++ CJO=9.26191e-12 VJ=1.6 M=0.411631 BV=33 EG=0.7 )
 
 
 *D1 1 0 M_D1N1418
@@ -53,41 +53,48 @@ d1 A K dx
 *D1 1 0 BAS69KFILM
 *D2 2 1 BAS69KFILM
 
-D11 a1 V1 BAR42
-D12 b1 V2 BAR42
+V_D11S nD11 V1 0
+D11 a1 nD11 BAR42
+V_D12S nD12 V2 0
+D12 b1 nD12 BAR42
 D13 c1 V3 BAR42
 D14 d1 V4 BAR42
 
-D21 0  a1 BAR42
-D22 V1 b1 BAR42
+V_D21S nD21 a1 0
+D21 0  nD21 BAR42
+V_D22S nD22 b1 0
+D22 V1 nD22 BAR42
 D23 V2 c1 BAR42
 D24 V3 d1 BAR42
 
-V_V1 Vs 0 dc 0.0 ac 0 sin(0.0 1.0 100MEG 0 0) 
-Rs Vs Vin 10
+V_V1 Vs 0 dc 0.0 ac 0 sin(0.0 1.0 100MEG 0 0)
+V_RSS nRs Vin 0
+Rs Vs nRs 10
 *Cin Vin1 Vin 3p
 *Lin Vin  0  10n
 Rl V4 0 1MEG
 
-C11 Vin a1 500p IC=0 
-C12 Vin b1 500p IC=0
+V_C11S Vin nC11 0
+C11 nC11 a1 500p IC=0
+V_C12S Vin nC12 0
+C12 nC12 b1 500p IC=0
 C13 Vin c1 500p IC=0
 C14 Vin d1 500p IC=0
 
-C21 V1  0  500p IC=0 
-C22 V2  0  500p IC=0
+V_C21S V1 nC21 0
+C21 nC21 0 500p IC=0
+V_C22S V2 nC22 0
+C22 nC22 0 500p IC=0
 C23 V3  0  500p IC=0
 C24 V4  0  500p IC=0
 
 *----------------------------------------------
 
-.print tran v(Vin) v(v1) v(v2) v(v3) v(v4) i(C11) i(C21) i(C12) i(C22) i(D11) i(D21) i(D12) i(D22) V(Vin) I(Rs)
+.save time v(vin) v(v1) v(v2) v(v3) v(v4) i(v_c11s) i(v_c21s) i(v_c12s) i(v_c22s) i(v_d11s) i(v_d21s) i(v_d12s) i(v_d22s) i(v_rss)
 
 *gnucap
-*.tran 50p 20u 19u  > vDubMult.out
-.tran 5n 15u 0  > vDubMult.out
-
-*.tran 1u 200u 0 *ngspice
+*.tran 50p 20u 19u
+.tran 5n 15u 0
 
 
 .op

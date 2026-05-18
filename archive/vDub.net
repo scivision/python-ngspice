@@ -69,6 +69,8 @@ C2 nC2 0 1n IC=0
 
 *----------------------------------------------
 
+.save time v(vin) v(1) v(vdcout) i(v_c1s) i(v_c2s) i(v_d1s) i(v_d2s)
+
 *gnucap
 .tran 0.1u 10u 0
 
