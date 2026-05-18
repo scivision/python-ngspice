@@ -4,8 +4,7 @@ import subprocess
 from matplotlib.pyplot import figure, show
 from scipy.interpolate import interp1d
 
-from ngspice import parse_ngspice_dc_tables
-from utils import get_exe
+from ngspice_binary import parse_ngspice_dc_tables, get_exe
 
 # %% brightness from XHP50 datasheet
 # https://www.cree-led.com/products/leds/xlamp/xhp/

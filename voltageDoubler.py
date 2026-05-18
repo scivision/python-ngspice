@@ -6,8 +6,7 @@ from matplotlib.pyplot import figure, show
 from pathlib import Path
 import tempfile
 
-from utils import get_exe
-from ngspice import parse_ngspice_raw_binary
+from ngspice_binary import parse_ngspice_raw_binary, get_exe
 
 p = argparse.ArgumentParser(description="Run and plot an ngspice netlist")
 p.add_argument("net", help="path to netlist")

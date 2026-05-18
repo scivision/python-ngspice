@@ -17,18 +17,29 @@ Installation:
 * macOS: `brew install ngspice`
 * [Windows](https://ngspice.sourceforge.io/download.html)
 
+```sh
+python -m pip install -e ./
+```
 
-Simulate no-driver Cree XHP LED problems due to wire voltage drop, using `ledDrop.net` and io.StringIO to avoid output file mess.
+## Simulations
+
+Simluate single-stage voltage doubler plotting voltage and current vs. time.
+
+```sh
+python voltageDoubler.py archive/vDub.net
+```
+
+Simulate multi-stage voltage multiplier plotting voltage, current, and impedance vs. time.
+
+```sh
+python voltageDoubler.py archive/vDubMult.net
+```
+
+Simulate no-driver Cree XHP LED problems due to wire voltage drop, using `ledDrop.net` and io.StringIO with stdout.
 
 ```sh
 python ledDrop.py
 ```
 
-### Other programs
-
-These programs run from GNU Octave or Matlab.
-
-* `runDub.m` run and plot basic voltage doubler current input and voltage output vs. time
 * `runDubTry.m` plot spectrum
-* `runDubMult.m` multi-stage voltage multiplier: voltage, current, impedance
 * `runMos.m` using MOS simulation

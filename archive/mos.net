@@ -4,25 +4,22 @@
 *.include irf520.lib
 *XM1 VR Vin 0 IRF520
 
-.include bss83.lib
+.include ../models/bss83.lib
 
 M1 VR Vin 0 0 BSS83 W=1e-3 L=1e-6
 R1 Vdd VR 1000
 
-V_dd Vdd 0 dc 5. 
-V_in Vin 0 ac 1 sin(1.0 1.0 100MEG 0 0) 
+V_dd Vdd 0 dc 5.
+V_in Vin 0 ac 1 sin(1.0 1.0 100MEG 0 0)
 
-*C1 Vin 1 330p IC=0 
-*C2 2   0 330p IC=0 
+*C1 Vin 1 330p IC=0
+*C2 2   0 330p IC=0
 
 *----------------------------------------------
 
-.print tran v(Vin) v(VR) 
+.save time v(vin) v(vr)
 
-*v(2) i(C1) i(C2) i(D1) i(D2)
-
-.tran 100p .2u 0 trace all > mos.out *gnucap
-*.tran 1u 100u 0 *ngspice
+.tran 100p .2u 0
 
 
 .op

@@ -1,3 +1,5 @@
 *.out
 *.dat
 *.png
+
+**.egg-info/

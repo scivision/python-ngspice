@@ -1,5 +1,18 @@
 import pandas
 import numpy
+import functools
+import shutil
+
+__all__ = ["parse_ngspice_dc_tables", "parse_ngspice_raw_binary"]
+
+
+@functools.cache
+def get_exe(name: str) -> str:
+    exe = shutil.which(name)
+    if exe is None:
+        raise FileNotFoundError(f"{name} not found in PATH")
+
+    return exe
 
 
 def parse_ngspice_dc_tables(text: str) -> pandas.Series:
